@@ -1,25 +1,4 @@
-# volley_insert
-## insert.php
-```
-<?php
-header('Content-Type: application/json');
-$datos = json_decode(file_get_contents("php://input"),true);
 
-require("conexion.php");
-
-$conn = retornarConexion();
-
-
-$sql = "insert into articulos (codigo,descripcion, precio) values ('$datos[codigo]','$datos[descripcion]','$datos[precio]')";
-if ($conn->query($sql))
-	echo '{"respuesta":"ok"}';
-else
-	echo '{"respuesta":"error en la insercción"}';
-
-$conn->close();
-
-?>
-```
 
 conexion.php
 ```
@@ -59,24 +38,20 @@ $conn->close();
 ?>
 ```
 
-## insert2.php
+## insertar.php
 ```
 <?php
-header('Content-Type: application/json');
+header('Content-type=application/json; charset=utf-8');
 $datos = json_decode(file_get_contents("php://input"),true);
 
 
-$micodigo = htmlspecialchars($_GET['codigo']);
-$midescripcion = htmlspecialchars($_GET['descripcion']);
-$miprecio = htmlspecialchars($_GET['precio']);
-//echo $micodigo;
 
 require("conexion.php");
 
 $conn = retornarConexion();
 
 
-$sql = "insert into articulos (codigo,descripcion, precio) values ({$micodigo},'{$midescripcion}}',{$miprecio})";
+$sql = "insert into articulos (codigo,descripcion, precio) values ('$datos[codigo]','$datos[descripcion]','$datos[precio]')";
 //echo $sql;
 if ($conn->query($sql))
 	echo '{"respuesta":"ok"}';
@@ -87,35 +62,6 @@ $conn->close();
 
 ?>
 ```
-## insertar3.php
-```
 
-<?php
-header('Content-Type: application/json');
-$datos = json_decode(file_get_contents("php://input"),true);
- 
 
-$usuario= $_GET['usuario'];
-$email =  $_GET['email'];
-$pass =  $_GET['pass'];
-//echo $micodigo;
 
-require("conectar.php");
-
-$conn = retornarConexion();
-
-$sql="";
-$sql = "insert into usuarios (usuario, email, pass) values ('{$usuario}','{$email}','{$pass}')";
-//echo $sql;
-if ($conn->query($sql))
-	echo '{"respuesta":"ok"}';
-else
-	echo '{"respuesta":"error en la insercción"}';
-
-$conn->close();
-
-```
-
-# Volley_Insertar
-# Volley_Insertar
-# Volley_Insertar
